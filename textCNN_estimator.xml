@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+    <property>
+        <!-- tensorflow作业的名字 -->
+        <name>afo.app.name</name>
+        <value>dp.consec.yanjiamei.single_card.test_run</value>
+    </property>
+    <property>
+        <!-- 作业的队列：下面是组内用的队列 -->
+        <name>afo.app.queue</name>
+        <value>root.zw03_training.hadoop-consec.training</value>
+    </property>
+    <property>
+        <name>afo.role.worker.env.AFO_PREFETCH_PROCESS</name>
+        <value>10</value>
+    </property>
+    <property>
+        <name>afo.engine.tensorflow.virtualenv.name</name>
+        <value>tensorflow_1_10_0</value>
+    </property>
+    <!-- defined ps and worker size -->
+    <property>
+        <name>parameter.servers</name>
+        <value>0</value>
+    </property>
+    <property>
+        <name>workers</name>
+        <value>1</value>
+    </property>
+    <!-- defined ps/worker resource -->
+    <property>
+        <name>worker.memory</name>
+        <value>52400</value>
+    </property>
+    <property>
+        <name>worker.vcore</name>
+        <value>20</value>
+    </property>
+    <property>
+        <name>worker.gcores24g</name>
+        <value>1</value>
+    </property>
+    <!-- defined ps/worker main python script -->
+    <property>
+        <name>worker.script</name>
+        <value>python textCNN_estimator_args.py</value>
+    </property>
+
+    <property>
+      <!-- worker 拉取后的文件是否 打平，此属性默认为true 不打平则层级显示 -->
+      <name>worker.input.flatten</name>
+      <value>false</value>
+    </property>
+    <!-- defined worker python script's FLAGS input args -->
+    <property>
+        <name>args.batch_size</name>
+        <value>64</value>
+    </property>
+    <property>
+        <name>args.num_epochs</name>
+        <value>10</value>
+    </property>
+    <property>
+        <name>args.data_dir</name>
+        <value>viewfs://hadoop-meituan/user/hadoop-consec-algo/yanjiamei/data</value>
+    </property>
+    <property>
+        <name>args.model_dir</name>
+        <value>viewfs://hadoop-meituan/user/hadoop-consec-algo/yanjiamei/textcnn_model</value>
+    </property>
+    <property>
+        <name>args.embedding_dir</name>
+        <value>./embedding.zip/embedding/embedding_array.npy</value>
+    </property>
+    <!-- defined tensor_board log_dir -->
+    <property>
+        <name>with.tensor.board</name>
+        <value>true</value>
+    </property>
+    <property>
+        <name>board.log_dir</name>
+        <value>viewfs://hadoop-meituan/user/hadoop-consec-algo/yanjiamei/textcnn_model</value>
+    </property>
+     <property>
+       <name>afo.engine.wait_for_job_finished</name>
+       <value>true</value>
+   </property>
+</configuration>
